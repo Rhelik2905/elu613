@@ -1,0 +1,23 @@
+<launch>
+	<!-- set up the parameter for the linear speed of the turtlebot -->
+	<param name="linspeed" type="double" value="0.1" />
+
+	<!-- set up the parameters for forward linear movements -->
+	<param name="fwd_linear_speed_x" type="double" value="0.1" />
+	<param name="fwd_angular_speed_z" type="double" value="0.0" />
+
+	<!-- set up the parameters for backward linear movements -->
+	<param name="bckwd_linear_speed_x" type="double" value="-0.1" />
+	<param name="bcwwd_angular_speed_z" type="double" value="0.0" />
+
+	<!-- set up the parameters for clockwise rotations -->
+	<param name="clw_linear_speed_x" type="double" value="0.0"/>
+	<param name="clw_angular_speed_z" type="double" value="-0.5" />
+
+	<!-- set up the parameters for counter-clockwise rotations -->
+	<param name="counclw_linear_speed_x" type="double" value="0.0" />
+	<param name="counclw_angular_speed_z" type="double" value="0.5" />
+
+	<!-- this just starts the node -->
+	<node pkg="tp2_ros_package" type="keyboard_node.py" name="kb" output="screen" />
+</launch>
