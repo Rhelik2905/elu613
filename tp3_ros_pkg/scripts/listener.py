@@ -3,41 +3,34 @@ import rospy
 from sensor_msgs.msg import PointCloud2
 from sensor_msgs.point_cloud2 import read_points
 
-bluepoints = []
-redpoints = []
-greenpoints = []
-bluecounter=0
-redcounter=0
-greencounter=0
+
 flag = 0
 
 def callback(pointcloud):
-    
+    global flag
+   
     if flag == 0 :
-        k=0
-        RGB=[]
-        while k < len(pointcloud):
-            RGB = pointcloud[k+16:k+19]
-            point = pointcloud[k:k+13]
-            if sum(RGB)-RGB[0]<100 and redcounter <= 100:
-                redpoints += point
-                redcounter += 1
-            elif sum(RGB)-RGB[1]<100 and greencounter <= 100 :
-                greenpoints += point
-                greencounter +=  1
-            elif sum(RGB)-RGB[2]<100 and bluecounter <= 100 :
-                bluepoints += point
-                bluecounter += 1
-
-            k+=32
-        flag += 1
-        print(callback)
-
+       redpoints, greenpoints, bluepoints=retrieveBinaryPoints(pointcloud)
+       redplane=leastSquares(redpoints)
+       greenplane=leastSquares(greenpoints)
+       blueplane=leastSquares(bluepoints)
+       intersectpoint=intersect(redplane,greenplane,blueplane)
+       flag += 1   
 
     else :
         pass
-    
-    
+
+
+def retrieveBinaryPoints(pointcloud):
+    #TODO : function that given a point cloud, returns 3 list of point in the format : [ [x,y,z], [x,y,z], ... ]
+    #one for the red points, one for the green points, one for the blue points.
+
+def leastSquares(points):
+    #TODO : function that given a list of points in the format [ [x,y,z], [x,y,z], ... ] returns
+    #the parameters of equation of the corresponding plane
+
+def intersect(redplane, greenplane, blueplane):
+    #TODO : function that given three planes return the intersection of them.
 
 
     
