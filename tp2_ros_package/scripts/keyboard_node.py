@@ -4,7 +4,7 @@ from geometry_msgs.msg import Twist
 from getch import *
 
 def talker():
-    pub = rospy.Publisher('/cmd_vel_mux/input/navi', Twist, queue_size=1)
+    pub = rospy.Publisher('/mobile_base/commands/velocity', Twist, queue_size=1)
     rospy.init_node('keyboard_inputs_node', anonymous=True)
     linspeed=rospy.get_param("linspeed",default=0.1)
     msg=Twist()
@@ -32,7 +32,7 @@ def talker():
             msg.angular.z=rospy.get_param("clw_angular_speed_z",default=0.0)
             rospy.loginfo(msg)
             pub.publish(msg)
-    	elif char == 'f' or char == 'F': # If the key is 'H' (or 'h') we ask the robot to do a counter-clockwise rotation at 0.5 m/s of angular speed.
+    	elif char == 'f' or char == 'F': # If the key is 'F' (or 'f') we ask the robot to do a counter-clockwise rotation at 0.5 m/s of angular speed.
             msg.linear.x=rospy.get_param("counclw_linear_speed_x",default=0.0)
             msg.angular.z=rospy.get_param("counclw_angular_speed_z",default=0.0)
             rospy.loginfo(msg)
