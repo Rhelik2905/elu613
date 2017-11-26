@@ -39,13 +39,16 @@ def MotorTalker():
 	BumperListener()
 	WheelDropListener()
 	while not rospy.is_shutdown():
-
+		MotorON = MotorPower()
+		MOtorON.state = Motor.ON
+		MotorOFF = MotorPower()
+		Motor.state = Motor.OFF
 		if bump or wheel:
 			rospy.loginfo("motor off")
-			pub.publish(MotorPower.OFF)
+			pub.publish(MotorOFF)
 		else:
 			rospy.loginfo("motor on")
-			pub.publish(MotorPower.ON)
+			pub.publish(MotorON)
 	
 		BumperListener()
 		WheelDropListener()
