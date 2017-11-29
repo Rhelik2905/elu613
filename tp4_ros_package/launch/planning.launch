@@ -1,0 +1,12 @@
+<launch>
+	<node name="turtlepose_publisher" pkg="tp4_ros_package" type="turtlepose_publisher.py" output="screen" />
+	<arg name="map_file" default="$(find tp4_ros_package)/map.yaml"/>
+	<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+	<node name="turtle2_tf_broadcaster" pkg="tp4_ros_package" type="tf_broadcaster_node.py" output="screen" >
+    	<param name="turtle" type="string" value="turtle2" /> 
+    </node>
+    <node name="planning" pkg="tp4_ros_package" type="planning_node.py" output="screen" args="$(arg x) $(arg y)">
+    	<param name="x_coord" type="double" value="$(arg x)" />
+    	<param name="y_coord" type="double" value="$(arg y)" />
+    </node>
+</launch>
