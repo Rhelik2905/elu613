@@ -1,0 +1,3 @@
+AfteAfter launching turtlbot run the scrit by the following command :
+
+rosrun tp4_ros_package reactive_process.py
